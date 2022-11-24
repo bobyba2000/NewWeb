@@ -1,0 +1,17 @@
+.title{
+    text-align: start;
+}
+
+.description{
+    text-align: start;
+}
+
+.source{
+    text-align: start;
+    font-style: italic;
+    font-size: xx-small;
+}
+
+.card{
+    height: 100%;
+}
