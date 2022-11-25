@@ -1,14 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 import { PostList } from './features/posts/PostList';
+import { SinglePostPage } from './features/single_post/SinglePostPage';
 
 function App() {
   return (
@@ -16,6 +13,10 @@ function App() {
       <div className='App'>
         <Routes>
           <Route path='/' element={<PostList />}> 
+
+          </Route>
+
+          <Route path='/:postId' element={<SinglePostPage />}> 
 
           </Route>
         </Routes>

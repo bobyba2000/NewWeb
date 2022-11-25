@@ -6,7 +6,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import { Menu, SearchOutlined } from '@mui/icons-material';
+import { Home, SearchOutlined } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,10 +52,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export interface SearchProps{
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
+  searchDisplay: string
 }
 
-export default function SearchAppBar({handleChange}:SearchProps) {
+export default function SearchAppBar({handleChange, searchDisplay}:SearchProps) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -66,7 +68,9 @@ export default function SearchAppBar({handleChange}:SearchProps) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-          <Menu/>
+            <Link to={'/'}>
+              <Home color="action"/>
+            </Link>
           </IconButton>
           <Typography
             variant="h6"
@@ -74,9 +78,10 @@ export default function SearchAppBar({handleChange}:SearchProps) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            NEWS WEBSITE
           </Typography>
-          <Search>
+          
+          <Search sx={{display: searchDisplay}}>
             <SearchIconWrapper>
               <SearchOutlined />
             </SearchIconWrapper>

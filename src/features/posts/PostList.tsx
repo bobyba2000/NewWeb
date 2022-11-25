@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import { Container } from "@mui/system";
 import SearchAppBar from "./navbar";
 import { debounce } from "lodash"
+import { Link } from 'react-router-dom';
 
 export const PostItem = (post: Post)=>{
     return (
@@ -29,7 +30,9 @@ export const PostItem = (post: Post)=>{
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Link to={`/${post.id}`}>
+                <Button size="small">Learn More</Button>
+            </Link>
           </CardActions>
         </Card>
     )
@@ -44,7 +47,7 @@ export const PostList= ()=>{
     
     useEffect(() => {
         if (status === 'idle') {
-          dispatch(fetchPostsAsync(""))
+          dispatch(fetchPostsAsync())
         }
       }, [status, dispatch])
 
@@ -58,7 +61,7 @@ export const PostList= ()=>{
 
     return (
         <React.Fragment>
-            <SearchAppBar handleChange={handleSearch}/>
+            <SearchAppBar handleChange={handleSearch} searchDisplay={'block'}/>
             <Container fixed sx={{marginTop: 10, marginBottom: 10}}>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="stretch">
                 {Array.from(Array(posts?.length??0)).map((_, index) => (
